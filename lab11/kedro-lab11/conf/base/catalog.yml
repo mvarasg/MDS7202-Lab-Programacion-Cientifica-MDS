@@ -51,6 +51,6 @@ y_test:
     type: pandas.ParquetDataSet
     filepath: ./data/05_model_input/y_test.parquet
 
-model:
+best_model:
     type: pickle.PickleDataSet
-    filepath: ./data/06_models/model.pkl
+    filepath: ./data/06_models/best_model.pkl

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/marti/OneDrive/Escritorio/Oto%C3%B1o%202023/Lab%20Programaci%C3%B3n/labs-sepulveda-varas/lab11/kedro-lab11/mlruns/643907946133755931/96ac86aca67d4ab5a6f73478ae5161ed/artifacts
+end_time: 1689223128493
+entry_point_name: ''
+experiment_id: '643907946133755931'
+lifecycle_stage: active
+run_id: 96ac86aca67d4ab5a6f73478ae5161ed
+run_name: rf
+run_uuid: 96ac86aca67d4ab5a6f73478ae5161ed
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689223117986
+status: 3
+tags: []
+user_id: marti

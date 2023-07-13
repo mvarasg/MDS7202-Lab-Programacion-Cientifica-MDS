@@ -12,7 +12,7 @@ from lightgbm import LGBMRegressor
 import mlflow
 
 
-def split_data(data: pd.DataFrame, params: Dict):
+def split_data(data: pd.DataFrame, params: dict):
 
     shuffled_data = data.sample(frac=1, random_state=params["random_state"])
     rows = shuffled_data.shape[0]
@@ -46,19 +46,19 @@ def get_best_model(experiment_id):
 
 # TODO: completar train_model
 def train_model(X_train, X_valid, y_train, y_valid):
-    mlflow.create_experiment('run_clf')
+    experiment_id = mlflow.create_experiment('run_clf')
+    mlflow.autolog(log_input_examples=False)
     classificator = [('lr', LinearRegression()), ('rf' , RandomForestRegressor()), ('svr' , SVR()), ('xgb' , XGBRegressor()),('lgbm' , LGBMRegressor())]
     for name,clf in classificator:
-        with mlflow.start_run(run_name = f'{name}'):
-            clf.fit(X_train, y_train)
+        with mlflow.start_run(experiment_id = experiment_id, run_name = f'{name}'):
+            clf.fit(X_train, y_train.values.ravel())
             y_pred = clf.predict(X_valid)
-            mae = mean_absolute_error(y_valid, y_pred)
-            #mlflow.log_param("modelo", "LinearRegression")
+            mae = mean_absolute_error(y_valid.values.ravel(), y_pred)
             mlflow.log_metric("valid_mae", mae)
-    return get_best_model('run_clf')
+    return get_best_model(experiment_id)
 
 def evaluate_model(model, X_test: pd.DataFrame, y_test: pd.Series):
     y_pred = model.predict(X_test)
-    mae = mean_absolute_error(y_test, y_pred)
+    mae = mean_absolute_error(y_test.values.ravel(), y_pred)
     logger = logging.getLogger(__name__)
     logger.info(f"Model has a Mean Absolute Error of {mae} on test data.")
