@@ -2,7 +2,9 @@
 # using Kedro 0.18.11.
 #
 # Documentation for this file format can be found in "Parameters"
-# Link: https://docs.kedro.org/en/0.18.11/kedro_project_setup/configuration.html#parameters
+# Link: https://docs.kedro.org/en/0.18.11/kedro_project_setup/configuration.html
+
+#parameters
 
 split_params:
   target: "price"

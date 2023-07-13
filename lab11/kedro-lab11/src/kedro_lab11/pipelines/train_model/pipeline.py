@@ -11,7 +11,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=split_data,
-                inputs="model_input_table",
+                inputs=["model_input_table", "params:split_params"],
                 outputs=["X_train", "X_valid", "X_test", "y_train", "y_valid", "y_test"],
                 name="split_data",
             ),
@@ -23,7 +23,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=evaluate_model,
-                inputs="best_model",
+                inputs=["best_model","X_test","y_test"],
                 outputs=None,
                 name="evaluate_model",
             )
