@@ -26,3 +26,31 @@ shuttles_prep:
 model_input_table:
     type: pandas.ParquetDataSet
     filepath: ./data/03_primary/model_input_table.parquet
+
+X_train:
+    type: pandas.ParquetDataSet
+    filepath: ./data/05_model_input/X_train.parquet
+
+X_valid:
+    type: pandas.ParquetDataSet
+    filepath: ./data/05_model_input/X_valid.parquet
+
+X_test:
+    type: pandas.ParquetDataSet
+    filepath: ./data/05_model_input/X_test.parquet
+
+y_train:
+    type: pandas.ParquetDataSet
+    filepath: ./data/05_model_input/y_train.parquet
+
+y_valid:
+    type: pandas.ParquetDataSet
+    filepath: ./data/05_model_input/y_valid.parquet
+
+y_test:
+    type: pandas.ParquetDataSet
+    filepath: ./data/05_model_input/y_test.parquet
+
+model:
+    type: pickle.PickleDataSet
+    filepath: ./data/06_models/model.pkl
