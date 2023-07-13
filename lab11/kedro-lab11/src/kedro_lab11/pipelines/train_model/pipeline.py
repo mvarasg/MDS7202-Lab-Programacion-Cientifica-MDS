@@ -4,7 +4,9 @@ generated using Kedro 0.18.11
 """
 
 from kedro.pipeline import Pipeline, node, pipeline
-from .nodes import split_data, get_best_model, train_model, evaluate_model
+
+from .nodes import evaluate_model, split_data, train_model
+
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline(
@@ -12,7 +14,14 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=split_data,
                 inputs=["model_input_table", "params:split_params"],
-                outputs=["X_train", "X_valid", "X_test", "y_train", "y_valid", "y_test"],
+                outputs=[
+                    "X_train",
+                    "X_valid",
+                    "X_test",
+                    "y_train",
+                    "y_valid",
+                    "y_test",
+                ],
                 name="split_data",
             ),
             node(
@@ -23,9 +32,9 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=evaluate_model,
-                inputs=["best_model","X_test","y_test"],
+                inputs=["best_model", "X_test", "y_test"],
                 outputs=None,
                 name="evaluate_model",
-            )
+            ),
         ]
     )
