@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/mvarasg/Documents/Universidad/MDS7202%20-%20Laboratorio%20de%20Programaci%C3%B3n%20Cient%C3%ADfica%20para%20Ciencia%20de%20Datos/Labs/lab11/kedro-lab11/mlruns/902045687282023601/e7697e51b3974c949527ea9abe0e73fd/artifacts
+end_time: 1689535511440
+entry_point_name: ''
+experiment_id: '902045687282023601'
+lifecycle_stage: active
+run_id: e7697e51b3974c949527ea9abe0e73fd
+run_name: lr
+run_uuid: e7697e51b3974c949527ea9abe0e73fd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689535506752
+status: 3
+tags: []
+user_id: mvarasg

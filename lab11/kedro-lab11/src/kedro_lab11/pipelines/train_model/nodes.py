@@ -3,7 +3,7 @@ This is a boilerplate pipeline 'train_model'
 generated using Kedro 0.18.11
 """
 import logging
-
+import time
 import mlflow
 import pandas as pd
 from lightgbm import LGBMRegressor
@@ -48,7 +48,6 @@ def get_best_model(experiment_id):
 
 # TODO: completar train_model
 def train_model(X_train, X_valid, y_train, y_valid):
-    experimentos = ["epx1", "epx2", "epx3", "epx4", "epx5"]
     classificator = [
         ("lr", LinearRegression()),
         ("rf", RandomForestRegressor()),
@@ -56,15 +55,15 @@ def train_model(X_train, X_valid, y_train, y_valid):
         ("xgb", XGBRegressor()),
         ("lgbm", LGBMRegressor()),
     ]
-    for exp_name in experimentos:
-        experiment_id = mlflow.create_experiment(f"{exp_name}")
-        mlflow.autolog(log_input_examples=False)
-        for name, clf in classificator:
-            with mlflow.start_run(experiment_id=experiment_id, run_name=f"{name}"):
-                clf.fit(X_train, y_train.values.ravel())
-                y_pred = clf.predict(X_valid)
-                mae = mean_absolute_error(y_valid.values.ravel(), y_pred)
-                mlflow.log_metric("valid_mae", mae)
+    tiempo = time.localtime()
+    experiment_id = mlflow.create_experiment(f"Experimento del [d:{tiempo.tm_mday}|{tiempo.tm_hour}:{tiempo.tm_min}]")
+    mlflow.autolog(log_input_examples=False)
+    for name, clf in classificator:
+        with mlflow.start_run(experiment_id=experiment_id, run_name=f"{name}"):
+            clf.fit(X_train, y_train.values.ravel())
+            y_pred = clf.predict(X_valid)
+            mae = mean_absolute_error(y_valid.values.ravel(), y_pred)
+            mlflow.log_metric("valid_mae", mae)
     return get_best_model(experiment_id)
 
 
