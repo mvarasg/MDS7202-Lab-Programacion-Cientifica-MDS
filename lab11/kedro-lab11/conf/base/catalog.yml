@@ -4,16 +4,16 @@
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
 companies:
-    type: pandas.CSVDataSet
-    filepath: ./data/01_raw/companies.csv
+    type: pandas.ParquetDataSet
+    filepath: ./data/01_raw/companies.parquet
   
 shuttles:
-    type: pandas.ExcelDataSet
-    filepath: ./data/01_raw/shuttles.xlsx
+    type: pandas.ParquetDataSet
+    filepath: ./data/01_raw/shuttles.parquet
 
 reviews:
-    type: pandas.CSVDataSet
-    filepath: ./data/01_raw/reviews.csv
+    type: pandas.ParquetDataSet
+    filepath: ./data/01_raw/reviews.parquet
 
 companies_prep:
     type: pandas.ParquetDataSet
